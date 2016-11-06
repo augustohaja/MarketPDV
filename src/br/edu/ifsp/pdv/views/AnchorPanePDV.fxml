@@ -11,19 +11,19 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="571.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="571.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifsp.pdv.controllers.AnchorPanePDVController">
    <children>
       <SplitPane dividerPositions="0.7042606516290727" layoutX="55.0" layoutY="50.0" prefHeight="571.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <items>
             <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <TableView layoutX="155.0" layoutY="148.0" prefHeight="569.0" prefWidth="559.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="tableViewItens" layoutX="155.0" layoutY="148.0" prefHeight="569.0" prefWidth="559.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="Cod" />
-                      <TableColumn prefWidth="225.0" text="Descrição" />
-                        <TableColumn prefWidth="73.0" text="Qtd." />
-                        <TableColumn prefWidth="89.0" text="Preço Unit." />
-                        <TableColumn prefWidth="96.0" text="Sub Total" />
+                      <TableColumn fx:id="tableColumnCod" prefWidth="75.0" text="Cod" />
+                      <TableColumn fx:id="tableColumnDescricao" prefWidth="225.0" text="Descrição" />
+                        <TableColumn fx:id="tableColumnQuantidade" prefWidth="73.0" text="Qtd." />
+                        <TableColumn fx:id="tableColumnPrecoUnitario" prefWidth="89.0" text="Preço Unit." />
+                        <TableColumn fx:id="tableColumnSubTotal" prefWidth="96.0" text="Sub Total" />
                     </columns>
                   </TableView>
                </children>
@@ -43,14 +43,14 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <Label text="Cod.:" />
-                              <Label text="Qtd.:" GridPane.rowIndex="1" />
-                              <TextField GridPane.columnIndex="1" />
-                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Label fx:id="labelCod" text="Cod.:" />
+                              <Label fx:id="labelQuantidade" text="Qtd.:" GridPane.rowIndex="1" />
+                              <TextField fx:id="textFieldCod" GridPane.columnIndex="1" />
+                              <TextField fx:id="textFieldQuantidade" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                            </children>
                         </GridPane>
-                        <Button layoutX="130.0" layoutY="160.0" mnemonicParsing="false" text="Adicionar" />
-                        <Button layoutX="49.0" layoutY="159.0" mnemonicParsing="false" text="Remover" />
+                        <Button fx:id="buttonAdicionar" layoutX="130.0" layoutY="160.0" mnemonicParsing="false" text="Adicionar" />
+                        <Button fx:id="buttonRemover" layoutX="49.0" layoutY="159.0" mnemonicParsing="false" text="Remover" />
                      </children></AnchorPane>
               </items>
             </SplitPane>

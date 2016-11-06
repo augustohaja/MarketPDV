@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.101" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifsp.pdv.controllers.VBoxAppController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifsp.pdv.controllers.VBoxAppController">
    <children>
       <MenuBar>
         <menus>
@@ -17,9 +16,9 @@
               <MenuItem mnemonicParsing="false" text="Close" />
             </items>
           </Menu>
-          <Menu fx:id="menuMovimento" mnemonicParsing="false" text="Movimento">
+          <Menu fx:id="menuVendas" mnemonicParsing="false" text="Vendas">
             <items>
-              <MenuItem fx:id="menuItemPdv" mnemonicParsing="false" text="PDV" />
+              <MenuItem fx:id="menuItemVendasPDV" mnemonicParsing="false" onAction="#handleMenuItemVendasPDV" text="PDV" />
             </items>
           </Menu>
           <Menu fx:id="menuAjuda" mnemonicParsing="false" text="Ajuda">
