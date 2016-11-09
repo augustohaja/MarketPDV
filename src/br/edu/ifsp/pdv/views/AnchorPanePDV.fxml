@@ -59,17 +59,17 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label prefHeight="35.0" prefWidth="99.0" text="0.00" textAlignment="RIGHT" GridPane.columnIndex="1">
+                              <Label fx:id="labelTotal" prefHeight="35.0" prefWidth="99.0" text="0.00" textAlignment="RIGHT" GridPane.columnIndex="1">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
                               </Label>
-                              <Label prefHeight="27.0" prefWidth="103.0" text="0.00" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                              <Label fx:id="labelPagamento" prefHeight="27.0" prefWidth="103.0" text="0.00" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label prefHeight="27.0" prefWidth="106.0" text="0.00" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                              <Label fx:id="labelTroco" prefHeight="27.0" prefWidth="106.0" text="0.00" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
