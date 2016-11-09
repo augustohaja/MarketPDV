@@ -5,7 +5,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import javax.swing.JOptionPane;
+
 import br.edu.ifsp.pdv.models.Item;
+import br.edu.ifsp.pdv.models.Produto;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -82,10 +85,68 @@ public class AnchorPanePDVController implements Initializable{
 	
 	@FXML
 	public void handleButtonAdicionar() throws IOException {
-		Item item = new Item(1L,"Produto Teste",5,10.5,52.5);
+		ArrayList<Produto> produtoList = new ArrayList<Produto>(); 
+		produtoList = retornaCadastroProdutos();
+		Item itemDigitado = new Item();
+		Item itemAtual = new Item();
+		Boolean achouProduto = false;
+		Boolean achouItem = false;
+		
+		if ((textFieldCod.getLength() > 0) && (Integer.parseInt(textFieldQuantidade.getText()) > 0)) {
+			for (Produto prod : produtoList) {
+				if (prod.getCod().equals(Long.parseLong(textFieldCod.getText()))) {
+					itemDigitado.setCod(prod.getCod());
+					itemDigitado.setDescricao(prod.getDescricao());
+					itemDigitado.setPrecoUnitario(prod.getPrecoUnitario());
+					itemDigitado.setQuantidade(Integer.parseInt(textFieldQuantidade.getText()));
+					itemDigitado.setSubTotal(itemDigitado.getQuantidade() * itemDigitado.getPrecoUnitario());
+					achouProduto = true;
+					for (Item it : itemList) {
+						if (it.getCod().equals(itemDigitado.getCod())) {
+							achouItem = true;
+							itemAtual = itemList.get(itemList.indexOf(it));
+							itemAtual.setQuantidade(itemAtual.getQuantidade() + itemDigitado.getQuantidade());
+							itemAtual.setSubTotal(itemAtual.getQuantidade() * itemAtual.getPrecoUnitario());
+							this.tableViewItens.refresh();
+						}
+					}
+					if (!achouItem) {
+						itemList.add(itemDigitado);
+					}
+				}
+			}
+		}
+		
+		if (!achouProduto){
+			//Mensagem de produto não cadastrado
+			JOptionPane.showMessageDialog(null,"Código não encontrado.");
+		} 
+		
+		if (Integer.parseInt(textFieldQuantidade.getText())<1){
+			JOptionPane.showMessageDialog(null,"A quantidade deve ser maior que zero.");
+		}
+
+		textFieldCod.setText("");
+		textFieldQuantidade.setText("");
+		
 		//System.out.println(item.toString());
-		itemList.add(item);
+		//itemList.add(item);
 		
 		loadTableViewItem();
+	}
+	
+	public ArrayList<Produto> retornaCadastroProdutos(){
+		ArrayList<Produto> produtoList = new ArrayList<Produto>();
+		produtoList.add(new Produto(1L,"Produto 1",1.0));
+		produtoList.add(new Produto(2L,"Produto 2",2.0));
+		produtoList.add(new Produto(3L,"Produto 3",3.0));
+		produtoList.add(new Produto(4L,"Produto 4",4.0));
+		produtoList.add(new Produto(5L,"Produto 5",5.0));
+		produtoList.add(new Produto(6L,"Produto 6",6.0));
+		produtoList.add(new Produto(7L,"Produto 7",7.0));
+		produtoList.add(new Produto(8L,"Produto 8",8.0));
+		produtoList.add(new Produto(9L,"Produto 9",9.0));
+		produtoList.add(new Produto(10L,"Produto 10",10.0));
+		return produtoList;
 	}
 }
