@@ -43,13 +43,13 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <Label fx:id="labelCod" text="Cod.:" />
-                              <Label fx:id="labelQuantidade" text="Qtd.:" GridPane.rowIndex="1" />
+                              <Label text="Cod.:" />
+                              <Label text="Qtd.:" GridPane.rowIndex="1" />
                               <TextField fx:id="textFieldCod" GridPane.columnIndex="1" />
                               <TextField fx:id="textFieldQuantidade" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                            </children>
                         </GridPane>
-                        <Button fx:id="buttonAdicionar" layoutX="130.0" layoutY="160.0" mnemonicParsing="false" text="Adicionar" />
+                        <Button fx:id="buttonAdicionar" layoutX="130.0" layoutY="160.0" mnemonicParsing="false" onAction="#handleButtonAdicionar" text="Adicionar" />
                         <Button fx:id="buttonRemover" layoutX="49.0" layoutY="159.0" mnemonicParsing="false" text="Remover" />
                      </children></AnchorPane>
               </items>
