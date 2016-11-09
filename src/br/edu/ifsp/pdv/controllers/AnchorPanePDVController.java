@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 
 import br.edu.ifsp.pdv.models.Item;
 import br.edu.ifsp.pdv.models.Produto;
+import br.edu.ifsp.pdv.som.TocarSom;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -120,10 +121,10 @@ public class AnchorPanePDVController implements Initializable{
 		if (!achouProduto){
 			//Mensagem de produto não cadastrado
 			JOptionPane.showMessageDialog(null,"Código não encontrado.");
-		} 
-		
-		if (Integer.parseInt(textFieldQuantidade.getText())<1){
+		} else if (Integer.parseInt(textFieldQuantidade.getText())<1){
 			JOptionPane.showMessageDialog(null,"A quantidade deve ser maior que zero.");
+		} else {
+			TocarSom.play();
 		}
 
 		textFieldCod.setText("");
