@@ -38,7 +38,7 @@ public class AnchorPanePDVController implements Initializable{
 	@FXML 
 	private Button buttonAdicionar;
 	
-	private ArrayList<Item> itemList;
+	private ArrayList<Item> itemList = new ArrayList<Item>();
 	private ObservableList<Item> itemObservableList;
 	//private StudentDAO dao;
 	
@@ -66,8 +66,8 @@ public class AnchorPanePDVController implements Initializable{
 		this.tableColumnSubTotal.setCellValueFactory(new PropertyValueFactory<>("subTotal"));
 		
 		// conversão de ArrayList para ObservableList
-		//this.itemObservableList = FXCollections.observableArrayList(this.itemList);
-		//this.tableViewItens.setItems(this.itemObservableList);
+		this.itemObservableList = FXCollections.observableArrayList(this.itemList);
+		this.tableViewItens.setItems(this.itemObservableList);
 	}
 	
 	public void selectItemTableViewItens(Item item) {
@@ -82,19 +82,10 @@ public class AnchorPanePDVController implements Initializable{
 	
 	@FXML
 	public void handleButtonAdicionar() throws IOException {
-		//Item item = new Item(1L,"Produto Teste",5,10.5,52.5);
+		Item item = new Item(1L,"Produto Teste",5,10.5,52.5);
 		//System.out.println(item.toString());
-		//itemList.add(item);
+		itemList.add(item);
 		
-		//loadTableViewItem();
-		
-		
-		//boolean buttonConfirmarClicked = showAnchorPaneCadastroAlunosDialog(student);
-		
-		/*if (buttonConfirmarClicked) {
-			this.dao.insert(student);
-			loadTableViewStudent();
-		}*/
+		loadTableViewItem();
 	}
-
 }
