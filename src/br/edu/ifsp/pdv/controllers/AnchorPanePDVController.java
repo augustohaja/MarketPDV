@@ -160,6 +160,7 @@ public class AnchorPanePDVController implements Initializable{
 		return produtoList;
 	}
 	
+	@FXML
 	public void atualizaTotais(){
 		Double total = 0.0;
 		Double troco = 0.0;
@@ -183,8 +184,5 @@ public class AnchorPanePDVController implements Initializable{
 			labelTotal.setText(total.toString());
 			labelTroco.setText(troco.toString());
 		}
-		
-		
-		
 	}
 }
