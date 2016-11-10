@@ -173,11 +173,11 @@ public class AnchorPanePDVController implements Initializable{
 				if (Double.parseDouble(textFieldPagamento.getText())>=total){
 					troco = total - Double.parseDouble(textFieldPagamento.getText());
 				} else {
-					JOptionPane.showMessageDialog(null,"O pagamento deve ser maior que o total.");
+					//JOptionPane.showMessageDialog(null,"O pagamento deve ser maior que o total.");
 				}
 				
 			} else {
-				JOptionPane.showMessageDialog(null,"O pagamento deve ser maior que zero.");
+				//JOptionPane.showMessageDialog(null,"O pagamento deve ser maior que zero.");
 			}
 			
 			
