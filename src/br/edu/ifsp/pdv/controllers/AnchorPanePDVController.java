@@ -15,6 +15,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -41,6 +42,13 @@ public class AnchorPanePDVController implements Initializable{
 	private Button buttonRemover;
 	@FXML 
 	private Button buttonAdicionar;
+	@FXML
+	private Label labelTotal;
+	@FXML
+	private TextField textFieldPagamento;
+	@FXML
+	private Label labelTroco;
+	
 	
 	private ArrayList<Item> itemList = new ArrayList<Item>();
 	private ObservableList<Item> itemObservableList;
@@ -114,6 +122,7 @@ public class AnchorPanePDVController implements Initializable{
 					if (!achouItem) {
 						itemList.add(itemDigitado);
 					}
+					atualizaTotais();
 				}
 			}
 		}
@@ -149,5 +158,33 @@ public class AnchorPanePDVController implements Initializable{
 		produtoList.add(new Produto(9L,"Produto 9",9.0));
 		produtoList.add(new Produto(10L,"Produto 10",10.0));
 		return produtoList;
+	}
+	
+	public void atualizaTotais(){
+		Double total = 0.0;
+		Double troco = 0.0;
+		
+		if (itemList.size() > 0){
+			for (Item it : itemList){
+				total += it.getSubTotal(); 
+			}
+			if (Double.parseDouble(textFieldPagamento.getText())>0.0){
+				if (Double.parseDouble(textFieldPagamento.getText())>=total){
+					troco = total - Double.parseDouble(textFieldPagamento.getText());
+				} else {
+					JOptionPane.showMessageDialog(null,"O pagamento deve ser maior que o total.");
+				}
+				
+			} else {
+				JOptionPane.showMessageDialog(null,"O pagamento deve ser maior que zero.");
+			}
+			
+			
+			labelTotal.setText(total.toString());
+			labelTroco.setText(troco.toString());
+		}
+		
+		
+		
 	}
 }
