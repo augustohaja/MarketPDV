@@ -13,6 +13,7 @@ import br.edu.ifsp.pdv.som.TocarSom;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -20,6 +21,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 
 public class AnchorPanePDVController implements Initializable{
 	@FXML
@@ -39,7 +41,9 @@ public class AnchorPanePDVController implements Initializable{
 	@FXML 
 	private TextField textFieldQuantidade;
 	@FXML 
-	private Button buttonRemover;
+	private Button buttonGravar;
+	@FXML 
+	private Button buttonSair;
 	@FXML 
 	private Button buttonAdicionar;
 	@FXML
@@ -48,6 +52,8 @@ public class AnchorPanePDVController implements Initializable{
 	private TextField textFieldPagamento;
 	@FXML
 	private Label labelTroco;
+	@FXML
+	private AnchorPane anchorPanePDV;
 	
 	
 	private ArrayList<Item> itemList = new ArrayList<Item>();
@@ -93,6 +99,17 @@ public class AnchorPanePDVController implements Initializable{
 	}
 	
 	@FXML
+	public void handleButtonGravar(){
+		this.itemList = new ArrayList<Item>();
+		this.tableViewItens.refresh();
+	}
+	
+	@FXML
+	public void handleButtonSair(){
+		//this.anchorPanePDV.getParent();
+	}
+	
+	@FXML
 	public void handleButtonAdicionar() throws IOException {
 		ArrayList<Produto> produtoList = new ArrayList<Produto>(); 
 		produtoList = retornaCadastroProdutos();
@@ -100,6 +117,10 @@ public class AnchorPanePDVController implements Initializable{
 		Item itemAtual = new Item();
 		Boolean achouProduto = false;
 		Boolean achouItem = false;
+		
+		if (textFieldQuantidade.getLength()==0){
+			textFieldQuantidade.setText("0");
+		}
 		
 		if ((textFieldCod.getLength() > 0) && (Integer.parseInt(textFieldQuantidade.getText()) > 0)) {
 			for (Produto prod : produtoList) {
