@@ -62,12 +62,7 @@ public class AnchorPanePDVController implements Initializable{
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaa");
-		//this.dao = new StudentDAO();
-
 		loadTableViewItem();
-		
-		
 		// Listen acionado diante de quaisquer alterações na seleção de itens do TableView
         this.tableViewItens.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> selectItemTableViewItens(newValue));
@@ -89,13 +84,7 @@ public class AnchorPanePDVController implements Initializable{
 	}
 	
 	public void selectItemTableViewItens(Item item) {
-		System.out.println(item);
-		
-		/*if (student != null) {
-			this.labelId.setText(String.valueOf(student.getId()));
-			this.labelNome.setText(student.getName());
-			this.labelIdade.setText(String.valueOf(student.getAge()));
-		}*/
+		System.out.println(item);		
 	}
 	
 	@FXML
@@ -107,7 +96,7 @@ public class AnchorPanePDVController implements Initializable{
 	}
 	
 	@FXML
-	public void handleButtonSair(){
+	public void handleButtonSair() throws IOException{
 		//this.anchorPanePDV.getParent();
 	}
 	

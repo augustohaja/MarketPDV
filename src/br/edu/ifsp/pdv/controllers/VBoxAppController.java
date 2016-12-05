@@ -35,7 +35,7 @@ public class VBoxAppController implements Initializable{
 	@FXML
 	public void handleMenuItemVendasPDV() throws IOException{
 		AnchorPane ap = (AnchorPane) FXMLLoader.load(getClass().getResource("/br/edu/ifsp/pdv/views/AnchorPanePDV.fxml"));
-		this.anchorPane.getChildren().setAll(ap); 
+		this.anchorPane.getChildren().setAll(ap);
 	}
 
 }
