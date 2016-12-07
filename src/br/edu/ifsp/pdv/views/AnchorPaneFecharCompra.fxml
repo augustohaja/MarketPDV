@@ -42,6 +42,7 @@
             <Font size="17.0" />
          </font>
       </Label>
-      <Button fx:id="buttonFinalizarCompra" layoutX="351.0" layoutY="488.0" mnemonicParsing="false" text="Finalizar Compra" />
+      <Button fx:id="buttonFinalizarCompra" layoutX="278.0" layoutY="465.0" mnemonicParsing="false" onAction="#handleButtonFinalizarCompra" text="Finalizar Compra" />
+      <Button fx:id="buttonCalcularTroco" layoutX="425.0" layoutY="465.0" mnemonicParsing="false" onAction="#calcularTroco" prefHeight="25.0" prefWidth="105.0" text="Calcular Troco" />
    </children>
 </AnchorPane>

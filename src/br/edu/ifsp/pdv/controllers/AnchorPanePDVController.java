@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 
 import br.edu.ifsp.pdv.models.Item;
 import br.edu.ifsp.pdv.models.Produto;
+import br.edu.ifsp.pdv.models.Sessao;
 import br.edu.ifsp.pdv.som.TocarSom;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -51,27 +52,19 @@ public class AnchorPanePDVController implements Initializable {
 	@FXML
 	private TextField textFieldPagamento;
 	@FXML
-	private Label labelTroco;
-	@FXML
 	private AnchorPane anchorPanePDV;
-	
-	private AnchorPaneFecharCompraController fecharCompra = new AnchorPaneFecharCompraController();
 
 	private ArrayList<Item> itemList = new ArrayList<Item>();
 	private ObservableList<Item> itemObservableList;
-	// private StudentDAO dao;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		loadTableViewItem();
-		// Listen acionado diante de quaisquer alterações na seleção de
-		// itens do TableView
 		this.tableViewItens.getSelectionModel().selectedItemProperty()
 				.addListener((observable, oldValue, newValue) -> selectItemTableViewItens(newValue));
 	}
 
 	private void loadTableViewItem() {
-		// this.itemList = this.dao.all();
 
 		// a string é o nome do atributo da classe do objeto
 		this.tableColumnCod.setCellValueFactory(new PropertyValueFactory<>("cod"));
@@ -91,19 +84,16 @@ public class AnchorPanePDVController implements Initializable {
 
 	@FXML
 	public void handleButtonFecharCompra() throws IOException {
-		AnchorPane ap = (AnchorPane) FXMLLoader.load(getClass().getResource("/br/edu/ifsp/pdv/views/AnchorPaneFecharCompra.fxml"));
-        this.anchorPanePDV.getChildren().setAll(ap);
-	}
-
-	@FXML
-	public void handleButtonSair() throws IOException {
-		// this.anchorPanePDV.getParent();
+		AnchorPane ap = (AnchorPane) FXMLLoader
+				.load(getClass().getResource("/br/edu/ifsp/pdv/views/AnchorPaneFecharCompra.fxml"));
+		this.anchorPanePDV.getChildren().setAll(ap);
 	}
 
 	@FXML
 	public void handleButtonAdicionar() throws IOException {
-		ArrayList<Produto> produtoList = new ArrayList<Produto>();
-		produtoList = retornaCadastroProdutos();
+
+		ArrayList<Produto> produtoList = retornaCadastroProdutos();
+
 		Item itemDigitado = new Item();
 		Item itemAtual = new Item();
 		Boolean achouProduto = false;
@@ -150,10 +140,6 @@ public class AnchorPanePDVController implements Initializable {
 
 		textFieldCod.setText("");
 		textFieldQuantidade.setText("");
-
-		// System.out.println(item.toString());
-		// itemList.add(item);
-
 		loadTableViewItem();
 	}
 
@@ -175,28 +161,19 @@ public class AnchorPanePDVController implements Initializable {
 	@FXML
 	public void atualizaTotais() {
 		Double total = 0.0;
-		Double troco = 0.0;
-		fecharCompra.setTotal(total);
 
 		if (itemList.size() > 0) {
 			for (Item it : itemList) {
 				total += it.getSubTotal();
 			}
-			if (Double.parseDouble(textFieldPagamento.getText()) > 0.0) {
-				if (Double.parseDouble(textFieldPagamento.getText()) >= total) {
-					troco = total - Double.parseDouble(textFieldPagamento.getText());
-				} else {
-					// JOptionPane.showMessageDialog(null,"O pagamento deve ser
-					// maior que o total.");
+
+			if (itemList.size() > 0) {
+				for (Item it : itemList) {
+					total += it.getSubTotal();
 				}
-
-			} else {
-				// JOptionPane.showMessageDialog(null,"O pagamento deve ser
-				// maior que zero.");
+				labelTotal.setText(total.toString());
 			}
-
-			labelTotal.setText(total.toString());
-			labelTroco.setText(troco.toString());
 		}
+		Sessao.setTotal(total);
 	}
 }
