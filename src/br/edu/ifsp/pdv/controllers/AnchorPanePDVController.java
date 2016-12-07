@@ -104,8 +104,7 @@ public class AnchorPanePDVController implements Initializable{
 	
 	@FXML
 	public void handleButtonAdicionar() throws IOException {
-		ArrayList<Produto> produtoList = new ArrayList<Produto>(); 
-		produtoList = retornaCadastroProdutos();
+		ArrayList<Produto> produtoList = retornaCadastroProdutos(); 
 		Item itemDigitado = new Item();
 		Item itemAtual = new Item();
 		Boolean achouProduto = false;
@@ -153,9 +152,6 @@ public class AnchorPanePDVController implements Initializable{
 		textFieldCod.setText("");
 		textFieldQuantidade.setText("");
 		
-		//System.out.println(item.toString());
-		//itemList.add(item);
-		
 		loadTableViewItem();
 	}
 	
@@ -177,26 +173,12 @@ public class AnchorPanePDVController implements Initializable{
 	@FXML
 	public void atualizaTotais(){
 		Double total = 0.0;
-		Double troco = 0.0;
 		
 		if (itemList.size() > 0){
 			for (Item it : itemList){
 				total += it.getSubTotal(); 
 			}
-			if (Double.parseDouble(textFieldPagamento.getText())>0.0){
-				if (Double.parseDouble(textFieldPagamento.getText())>=total){
-					troco = total - Double.parseDouble(textFieldPagamento.getText());
-				} else {
-					//JOptionPane.showMessageDialog(null,"O pagamento deve ser maior que o total.");
-				}
-				
-			} else {
-				//JOptionPane.showMessageDialog(null,"O pagamento deve ser maior que zero.");
-			}
-			
-			
 			labelTotal.setText(total.toString());
-			labelTroco.setText(troco.toString());
 		}
 	}
 }
