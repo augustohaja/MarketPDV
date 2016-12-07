@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPanePDV" prefHeight="571.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifsp.pdv.controllers.AnchorPanePDVController">
+<AnchorPane fx:id="anchorPaneFecharCompra" prefHeight="571.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifsp.pdv.controllers.AnchorPaneFecharCompraController">
    <children>
       <Separator layoutX="89.0" layoutY="117.0" prefHeight="0.0" prefWidth="622.0" />
       <Label layoutX="278.0" layoutY="60.0" text="Fechamento de Compra">

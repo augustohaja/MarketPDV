@@ -23,28 +23,28 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
-public class AnchorPanePDVController implements Initializable{
+public class AnchorPanePDVController implements Initializable {
 	@FXML
 	private TableView<Item> tableViewItens;
 	@FXML
-	private TableColumn<Item,Long> tableColumnCod;
+	private TableColumn<Item, Long> tableColumnCod;
 	@FXML
-	private TableColumn<Item,String> tableColumnDescricao;
-	@FXML 
-	private TableColumn<Item,Integer> tableColumnQuantidade;
-	@FXML 
-	private TableColumn<Item,Double> tableColumnPrecoUnitario;
-	@FXML 
-	private TableColumn<Item,Double> tableColumnSubTotal;
-	@FXML 
+	private TableColumn<Item, String> tableColumnDescricao;
+	@FXML
+	private TableColumn<Item, Integer> tableColumnQuantidade;
+	@FXML
+	private TableColumn<Item, Double> tableColumnPrecoUnitario;
+	@FXML
+	private TableColumn<Item, Double> tableColumnSubTotal;
+	@FXML
 	private TextField textFieldCod;
-	@FXML 
+	@FXML
 	private TextField textFieldQuantidade;
-	@FXML 
+	@FXML
 	private Button buttonGravar;
-	@FXML 
+	@FXML
 	private Button buttonSair;
-	@FXML 
+	@FXML
 	private Button buttonAdicionar;
 	@FXML
 	private Label labelTotal;
@@ -55,66 +55,64 @@ public class AnchorPanePDVController implements Initializable{
 	@FXML
 	private AnchorPane anchorPanePDV;
 	
-	
+	private AnchorPaneFecharCompraController fecharCompra = new AnchorPaneFecharCompraController();
+
 	private ArrayList<Item> itemList = new ArrayList<Item>();
 	private ObservableList<Item> itemObservableList;
-	//private StudentDAO dao;
-	
+	// private StudentDAO dao;
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		loadTableViewItem();
-		// Listen acionado diante de quaisquer altera√ß√µes na sele√ß√£o de itens do TableView
-        this.tableViewItens.getSelectionModel().selectedItemProperty().addListener(
-                (observable, oldValue, newValue) -> selectItemTableViewItens(newValue));
+		// Listen acionado diante de quaisquer altera√ß√µes na sele√ß√£o de
+		// itens do TableView
+		this.tableViewItens.getSelectionModel().selectedItemProperty()
+				.addListener((observable, oldValue, newValue) -> selectItemTableViewItens(newValue));
 	}
-	
+
 	private void loadTableViewItem() {
-		//this.itemList = this.dao.all();
-		
+		// this.itemList = this.dao.all();
+
 		// a string √© o nome do atributo da classe do objeto
 		this.tableColumnCod.setCellValueFactory(new PropertyValueFactory<>("cod"));
 		this.tableColumnDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
 		this.tableColumnQuantidade.setCellValueFactory(new PropertyValueFactory<>("quantidade"));
 		this.tableColumnPrecoUnitario.setCellValueFactory(new PropertyValueFactory<>("precoUnitario"));
 		this.tableColumnSubTotal.setCellValueFactory(new PropertyValueFactory<>("subTotal"));
-		
+
 		// convers√£o de ArrayList para ObservableList
 		this.itemObservableList = FXCollections.observableArrayList(this.itemList);
 		this.tableViewItens.setItems(this.itemObservableList);
 	}
-	
+
 	public void selectItemTableViewItens(Item item) {
-		System.out.println(item);		
+		System.out.println(item);
 	}
-	
+
 	@FXML
-	public void handleButtonFecharCompra(){
-		
-		
-//		//this.itemList = new ArrayList<Item>();
-//		this.itemList.clear();
-//		this.tableViewItens.refresh();
-//		System.out.println("Gravei!");
+	public void handleButtonFecharCompra() throws IOException {
+		AnchorPane ap = (AnchorPane) FXMLLoader.load(getClass().getResource("/br/edu/ifsp/pdv/views/AnchorPaneFecharCompra.fxml"));
+        this.anchorPanePDV.getChildren().setAll(ap);
 	}
-	
+
 	@FXML
-	public void handleButtonSair() throws IOException{
-		//this.anchorPanePDV.getParent();
+	public void handleButtonSair() throws IOException {
+		// this.anchorPanePDV.getParent();
 	}
-	
+
 	@FXML
 	public void handleButtonAdicionar() throws IOException {
-		ArrayList<Produto> produtoList = new ArrayList<Produto>(); 
+		ArrayList<Produto> produtoList = new ArrayList<Produto>();
 		produtoList = retornaCadastroProdutos();
 		Item itemDigitado = new Item();
 		Item itemAtual = new Item();
 		Boolean achouProduto = false;
 		Boolean achouItem = false;
-		
-		if (textFieldQuantidade.getLength()==0){
+
+		if (textFieldQuantidade.getLength() == 0) {
 			textFieldQuantidade.setText("0");
 		}
-		
+
 		if ((textFieldCod.getLength() > 0) && (Integer.parseInt(textFieldQuantidade.getText()) > 0)) {
 			for (Produto prod : produtoList) {
 				if (prod.getCod().equals(Long.parseLong(textFieldCod.getText()))) {
@@ -140,61 +138,63 @@ public class AnchorPanePDVController implements Initializable{
 				}
 			}
 		}
-		
-		if (!achouProduto){
-			//Mensagem de produto n„o cadastrado
-			JOptionPane.showMessageDialog(null,"CÛdigo n„o encontrado.");
-		} else if (Integer.parseInt(textFieldQuantidade.getText())<1){
-			JOptionPane.showMessageDialog(null,"A quantidade deve ser maior que zero.");
+
+		if (!achouProduto) {
+			// Mensagem de produto n„o cadastrado
+			JOptionPane.showMessageDialog(null, "CÛdigo n„o encontrado.");
+		} else if (Integer.parseInt(textFieldQuantidade.getText()) < 1) {
+			JOptionPane.showMessageDialog(null, "A quantidade deve ser maior que zero.");
 		} else {
 			TocarSom.play();
 		}
 
 		textFieldCod.setText("");
 		textFieldQuantidade.setText("");
-		
-		//System.out.println(item.toString());
-		//itemList.add(item);
-		
+
+		// System.out.println(item.toString());
+		// itemList.add(item);
+
 		loadTableViewItem();
 	}
-	
-	public ArrayList<Produto> retornaCadastroProdutos(){
+
+	public ArrayList<Produto> retornaCadastroProdutos() {
 		ArrayList<Produto> produtoList = new ArrayList<Produto>();
-		produtoList.add(new Produto(1L,"Produto 1",1.0));
-		produtoList.add(new Produto(2L,"Produto 2",2.0));
-		produtoList.add(new Produto(3L,"Produto 3",3.0));
-		produtoList.add(new Produto(4L,"Produto 4",4.0));
-		produtoList.add(new Produto(5L,"Produto 5",5.0));
-		produtoList.add(new Produto(6L,"Produto 6",6.0));
-		produtoList.add(new Produto(7L,"Produto 7",7.0));
-		produtoList.add(new Produto(8L,"Produto 8",8.0));
-		produtoList.add(new Produto(9L,"Produto 9",9.0));
-		produtoList.add(new Produto(10L,"Produto 10",10.0));
+		produtoList.add(new Produto(1L, "Produto 1", 1.0));
+		produtoList.add(new Produto(2L, "Produto 2", 2.0));
+		produtoList.add(new Produto(3L, "Produto 3", 3.0));
+		produtoList.add(new Produto(4L, "Produto 4", 4.0));
+		produtoList.add(new Produto(5L, "Produto 5", 5.0));
+		produtoList.add(new Produto(6L, "Produto 6", 6.0));
+		produtoList.add(new Produto(7L, "Produto 7", 7.0));
+		produtoList.add(new Produto(8L, "Produto 8", 8.0));
+		produtoList.add(new Produto(9L, "Produto 9", 9.0));
+		produtoList.add(new Produto(10L, "Produto 10", 10.0));
 		return produtoList;
 	}
-	
+
 	@FXML
-	public void atualizaTotais(){
+	public void atualizaTotais() {
 		Double total = 0.0;
 		Double troco = 0.0;
-		
-		if (itemList.size() > 0){
-			for (Item it : itemList){
-				total += it.getSubTotal(); 
+		fecharCompra.setTotal(total);
+
+		if (itemList.size() > 0) {
+			for (Item it : itemList) {
+				total += it.getSubTotal();
 			}
-			if (Double.parseDouble(textFieldPagamento.getText())>0.0){
-				if (Double.parseDouble(textFieldPagamento.getText())>=total){
+			if (Double.parseDouble(textFieldPagamento.getText()) > 0.0) {
+				if (Double.parseDouble(textFieldPagamento.getText()) >= total) {
 					troco = total - Double.parseDouble(textFieldPagamento.getText());
 				} else {
-					//JOptionPane.showMessageDialog(null,"O pagamento deve ser maior que o total.");
+					// JOptionPane.showMessageDialog(null,"O pagamento deve ser
+					// maior que o total.");
 				}
-				
+
 			} else {
-				//JOptionPane.showMessageDialog(null,"O pagamento deve ser maior que zero.");
+				// JOptionPane.showMessageDialog(null,"O pagamento deve ser
+				// maior que zero.");
 			}
-			
-			
+
 			labelTotal.setText(total.toString());
 			labelTroco.setText(troco.toString());
 		}
