@@ -88,11 +88,13 @@ public class AnchorPanePDVController implements Initializable{
 	}
 	
 	@FXML
-	public void handleButtonGravar(){
-		//this.itemList = new ArrayList<Item>();
-		this.itemList.clear();
-		this.tableViewItens.refresh();
-		System.out.println("Gravei!");
+	public void handleButtonFecharCompra(){
+		
+		
+//		//this.itemList = new ArrayList<Item>();
+//		this.itemList.clear();
+//		this.tableViewItens.refresh();
+//		System.out.println("Gravei!");
 	}
 	
 	@FXML

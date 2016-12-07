@@ -12,19 +12,9 @@
    <children>
       <MenuBar>
         <menus>
-          <Menu fx:id="menuCadastros" mnemonicParsing="false" text="Cadastros">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
           <Menu fx:id="menuVendas" mnemonicParsing="false" text="Vendas">
             <items>
-              <MenuItem fx:id="menuItemVendasPDV" mnemonicParsing="false" onAction="#handleMenuItemVendasPDV" text="PDV" />
-            </items>
-          </Menu>
-          <Menu fx:id="menuAjuda" mnemonicParsing="false" text="Ajuda">
-            <items>
-              <MenuItem fx:id="menuItemSobre" mnemonicParsing="false" text="Sobre" />
+              <MenuItem fx:id="menuItemVendasPDV" mnemonicParsing="false" onAction="#handleMenuItemVendasPDV" text="Ponto de venda" />
             </items>
           </Menu>
         </menus>
